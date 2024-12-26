@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Simple Paint</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Add Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+    <div class="container">
+        <canvas id="canvas"></canvas>
+        <div class="toolbar">
+            <div class="color-section">
+                <div class="color-row">
+                    <div class="color" data-color="#000000" style="background-color: #000000;"></div>
+                    <div class="color" data-color="#1D2B53" style="background-color: #1D2B53;"></div>
+                    <div class="color" data-color="#7E2553" style="background-color: #7E2553;"></div>
+                    <div class="color" data-color="#008751" style="background-color: #008751;"></div>
+                    <div class="color" data-color="#AB5236" style="background-color: #AB5236;"></div>
+                    <div class="color" data-color="#5F574F" style="background-color: #5F574F;"></div>
+                    <div class="color" data-color="#C2C3C7" style="background-color: #C2C3C7;"></div>
+                    <div class="color" data-color="#FFFFFF" style="background-color: #FFFFFF;"></div>
+                </div>
+                <div class="color-row">
+                    <div class="color" data-color="#FF004D" style="background-color: #FF004D;"></div>
+                    <div class="color" data-color="#FFA300" style="background-color: #FFA300;"></div>
+                    <div class="color" data-color="#FFFF27" style="background-color: #FFFF27;"></div>
+                    <div class="color" data-color="#00E756" style="background-color: #00E756;"></div>
+                    <div class="color" data-color="#29ADFF" style="background-color: #29ADFF;"></div>
+                    <div class="color" data-color="#83769C" style="background-color: #83769C;"></div>
+                    <div class="color" data-color="#FF77A8" style="background-color: #FF77A8;"></div>
+                    <div class="color" data-color="#FFCCAA" style="background-color: #FFCCAA;"></div>
+                </div>
+            </div>
+            <div class="brush-sizes">
+                <div class="size small" data-size="5"></div>
+                <div class="size medium" data-size="10"></div>
+                <div class="size large" data-size="20"></div>
+            </div>
+            <div class="actions">
+                <button id="clear" class="icon-button">
+                    <i data-feather="trash-2"></i>
+                </button>
+                <button id="save" class="icon-button">
+                    <i data-feather="download"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="clearModal">
+        <div class="modal-content">
+            <h3>Clear Canvas</h3>
+            <p>Are you sure you want to clear the canvas? This action cannot be undone.</p>
+            <div class="modal-actions">
+                <button id="cancelClear">Cancel</button>
+                <button id="confirmClear">Clear</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
