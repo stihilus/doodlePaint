@@ -55,6 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.stroke();
         ctx.beginPath();
         ctx.moveTo(x, y);
+
+        // Save to local storage after each stroke
+        saveToLocalStorage();
     }
 
     // Event listeners for mouse drawing
@@ -111,6 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fillStyle = '#FFFFFF';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         modal.classList.remove('show');
+        // Clear local storage when canvas is cleared
+        localStorage.removeItem('savedDrawing');
     });
 
     // Close modal when clicking outside
@@ -137,12 +142,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update canvas size function
     function updateCanvasSize() {
+        // Store the current drawing
+        const tempDrawing = canvas.toDataURL();
+        
         canvas.width = canvas.offsetWidth;
         canvas.height = canvas.offsetHeight;
         
-        // Redraw white background when resizing
+        // Redraw white background
         ctx.fillStyle = '#FFFFFF';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Restore the drawing
+        const img = new Image();
+        img.onload = function() {
+            ctx.drawImage(img, 0, 0);
+        };
+        img.src = tempDrawing;
     }
 
     // Set initial canvas size
@@ -150,4 +165,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update canvas size when window is resized
     window.addEventListener('resize', updateCanvasSize);
+
+    // Add these functions for local storage handling
+    function saveToLocalStorage() {
+        const drawingData = canvas.toDataURL();
+        localStorage.setItem('savedDrawing', drawingData);
+    }
+
+    function loadFromLocalStorage() {
+        const savedDrawing = localStorage.getItem('savedDrawing');
+        if (savedDrawing) {
+            const img = new Image();
+            img.onload = function() {
+                ctx.drawImage(img, 0, 0);
+            };
+            img.src = savedDrawing;
+        }
+    }
+
+    // Load saved drawing when page loads
+    loadFromLocalStorage();
+
+    // Add window unload event to save drawing before closing
+    window.addEventListener('beforeunload', saveToLocalStorage);
 }); 
