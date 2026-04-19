@@ -3,6 +3,7 @@ body {
     padding: 0;
     background-color: #f0f0f0;
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     overflow: hidden;
     -webkit-user-select: none;
@@ -15,19 +16,15 @@ body {
     flex-direction: column;
     background-color: white;
     height: 100vh;
+    height: 100dvh;
+    max-height: 100vh;
+    max-height: 100dvh;
 }
 
 .canvas-wrapper {
     flex: 1;
     position: relative;
     overflow: hidden;
-    padding-bottom: 80px;
-}
-
-@media (max-width: 768px) {
-    .canvas-wrapper {
-        padding-bottom: 70px;
-    }
 }
 
 #canvas,
@@ -56,11 +53,17 @@ body {
     background-color: #F5F5F5;
     gap: 12px;
     border-top: 1px solid #eee;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
+    flex-shrink: 0;
+    min-height: 60px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+    .toolbar {
+        padding: 10px 12px;
+        gap: 8px;
+        min-height: 70px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -72,6 +75,7 @@ body {
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
         -ms-overflow-style: none;
+        min-height: 65px;
     }
 
     .toolbar::-webkit-scrollbar {
