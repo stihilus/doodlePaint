@@ -3,15 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Simple Paint</title>
+    <title>Doodle Paint</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Add Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
 </head>
 <body>
     <div class="container">
-        <canvas id="canvas"></canvas>
+        <div class="canvas-wrapper">
+            <canvas id="canvas"></canvas>
+            <canvas id="overlay"></canvas>
+        </div>
+
+        <div class="sticker-picker" id="stickerPicker">
+            <div class="sticker" data-sticker="❤️">❤️</div>
+            <div class="sticker" data-sticker="⭐">⭐</div>
+            <div class="sticker" data-sticker="🌟">🌟</div>
+            <div class="sticker" data-sticker="🌈">🌈</div>
+            <div class="sticker" data-sticker="🌸">🌸</div>
+            <div class="sticker" data-sticker="🌺">🌺</div>
+            <div class="sticker" data-sticker="🌻">🌻</div>
+            <div class="sticker" data-sticker="🍀">🍀</div>
+            <div class="sticker" data-sticker="🦋">🦋</div>
+            <div class="sticker" data-sticker="🐶">🐶</div>
+            <div class="sticker" data-sticker="🐱">🐱</div>
+            <div class="sticker" data-sticker="🦄">🦄</div>
+            <div class="sticker" data-sticker="🐰">🐰</div>
+            <div class="sticker" data-sticker="🐟">🐟</div>
+            <div class="sticker" data-sticker="☀️">☀️</div>
+            <div class="sticker" data-sticker="🌙">🌙</div>
+            <div class="sticker" data-sticker="☁️">☁️</div>
+            <div class="sticker" data-sticker="🎈">🎈</div>
+            <div class="sticker" data-sticker="🍉">🍉</div>
+            <div class="sticker" data-sticker="🍭">🍭</div>
+        </div>
+
         <div class="toolbar">
+            <div class="tools">
+                <button class="tool-button active" data-tool="pen" title="Olovka">✏️</button>
+                <button class="tool-button" data-tool="eraser" title="Gumica">🧽</button>
+                <button class="tool-button" data-tool="spray" title="Sprej">💦</button>
+                <button class="tool-button" data-tool="rainbow" title="Duga">🌈</button>
+                <button class="tool-button" data-tool="glitter" title="Svetlucanje">✨</button>
+                <button class="tool-button" data-tool="sticker" title="Stikeri">😀</button>
+                <span class="tool-divider"></span>
+                <button class="toggle-button" id="mirrorToggle" title="Simetrija">🪞</button>
+            </div>
+
             <div class="color-section">
                 <div class="color-row">
                     <div class="color" data-color="#000000" style="background-color: #000000;"></div>
@@ -34,31 +71,38 @@
                     <div class="color" data-color="#FFCCAA" style="background-color: #FFCCAA;"></div>
                 </div>
             </div>
+
             <div class="brush-sizes">
                 <div class="size small" data-size="5"></div>
                 <div class="size medium" data-size="10"></div>
                 <div class="size large" data-size="20"></div>
             </div>
+
             <div class="actions">
-                <button id="clear" class="icon-button">
+                <button id="undo" class="icon-button" title="Vrati" disabled>
+                    <i data-feather="rotate-ccw"></i>
+                </button>
+                <button id="clear" class="icon-button" title="Obrisi">
                     <i data-feather="trash-2"></i>
                 </button>
-                <button id="save" class="icon-button">
+                <button id="save" class="icon-button" title="Sacuvaj">
                     <i data-feather="download"></i>
                 </button>
             </div>
         </div>
     </div>
+
     <div class="modal" id="clearModal">
         <div class="modal-content">
-            <h3>Clear Canvas</h3>
-            <p>Are you sure you want to clear the canvas? This action cannot be undone.</p>
+            <h3>Obrisi sve?</h3>
+            <p>Da li zelis da obrises ceo crtez? Ovo se ne moze vratiti.</p>
             <div class="modal-actions">
-                <button id="cancelClear">Cancel</button>
-                <button id="confirmClear">Clear</button>
+                <button id="cancelClear">Nazad</button>
+                <button id="confirmClear">Obrisi</button>
             </div>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
-</html> 
+</html>
