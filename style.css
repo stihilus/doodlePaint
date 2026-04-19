@@ -21,6 +21,11 @@ body {
     max-height: 100dvh;
 }
 
+.toolbar-wrapper {
+    flex-shrink: 0;
+    position: relative;
+}
+
 .canvas-wrapper {
     flex: 1;
     position: relative;
@@ -326,15 +331,27 @@ body {
 .sticker-picker {
     display: none;
     gap: 4px;
-    padding: 8px 14px;
+    padding: 15px 16px;
     background-color: #FFF8E1;
     border-top: 1px solid #eee;
     overflow-x: auto;
     flex-wrap: nowrap;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .sticker-picker.show {
     display: flex;
+}
+
+@media (max-width: 1024px) {
+    .sticker-picker {
+        padding: 12px 14px;
+    }
 }
 
 .sticker {
